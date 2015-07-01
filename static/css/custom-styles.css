@@ -1,0 +1,11 @@
+.image-house {
+    height: auto;
+    width: auto;
+    max-width: 250px;
+    max-height: 300px;
+
+}
+
+.button-add {
+    text-align: right;
+}

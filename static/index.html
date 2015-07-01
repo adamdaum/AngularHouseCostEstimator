@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>635 Arguello</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+    <script src="js/estimator.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="css/custom-styles.css"/>
+
+</head>
+
+<body ng-controller="myCtrl">
+
+<div class="container theme-showcase" role="main">
+
+    <div class="jumbotron">
+        <h1>635 Arguello, Pacifica, CA
+        <img src="http://search.mlslistings.com/mediaserver/GetMedia.ashx?Key=6967079&TableID=9&Type=1&Size=3&exk=fc1c665ac6d59f40c043d3657eaa660f&Number=0" class="image-house" alt=""/>
+        </h1>
+        <p><a href="http://search.mlslistings.com/Matrix/Public/Portal.aspx?k=539985X0DCS&p=DE-33702722-978#1">MLS Listing Info</a></p>
+        <p></p>
+        <p></p>
+    </div>
+
+    <div class="page-header">
+        <h1>Projects</h1>
+    </div>
+
+    <table class="table table-striped">
+
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Vendor</th>
+            <th>Hours</th>
+            <th>Cost</th>
+            <th>Start</th>
+            <th>Finish</th>
+        </tr>
+
+        <tr>
+            <td><input type="text" ng-model="inputName"/></td>
+            <td><input type="text" ng-model="inputDescription"/></td>
+            <td><input type="text" ng-model="inputVendor"/></td>
+            <td><input type="number" ng-model="inputHours"/></td>
+            <td><input type="number" ng-model="inputCost"/></td>
+            <td><input type="date" ng-model="inputStart"/></td>
+            <td><input type="date" ng-model="inputFinish"/></td>
+
+        </tr>
+
+        <tr>
+            <td><button ng-click="addProject()">Add Project</button></td>
+        </tr>
+
+
+
+        <tr ng-repeat="project in projects">
+            <td>{{ project.name }}</td>
+            <td>{{ project.description }}</td>
+            <td>{{ project.vendor }}</td>
+            <td>{{ project.hours }}</td>
+            <td>{{ project.cost | currency }}</td>
+            <td>{{ project.start }}</td>
+            <td>{{ project.finish }}</td>
+            <td><button ng-click="deleteProject(project)">Delete</button></td>
+        </tr>
+
+    </table>
+
+    <br/>
+    <div class="page-header">
+        <h1>Total Cost: </h1>
+    </div>
+
+    <div class="well">
+        <h1 align="right">{{ getTotal() | currency }}</h1>
+    </div>
+
+
+</div> <!-- /container -->
+
+</body>
+
+</html>
