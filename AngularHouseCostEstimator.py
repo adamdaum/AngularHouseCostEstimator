@@ -1,10 +1,12 @@
 from flask import Flask
+from flask.ext.heroku import Heroku
 from flask.ext.restless import APIManager
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, Text, Float, Date
 
 app = Flask(__name__, static_url_path='')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://adamdaum:t7w94u3qA@localhost/projects'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://adamdaum:t7w94u3qA@localhost/projects'
+heroku = Heroku(app)
 db = SQLAlchemy(app)
 
 class Project(db.Model):
@@ -30,7 +32,7 @@ def index():
 
 
 
-app.debug = True
+#app.debug = True
 
 if __name__ == '__main__':
     app.run()
