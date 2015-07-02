@@ -1,0 +1,1 @@
+web: gunicorn AngularHouseCostEstimator:app --log-file=-
