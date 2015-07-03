@@ -4,6 +4,7 @@ from flask import Flask
 from flask.ext.heroku import Heroku
 from flask.ext.restless import APIManager
 from flask.ext.sqlalchemy import SQLAlchemy
+import psycopg2
 from sqlalchemy import Column, Integer, Text, Float, Date
 
 
