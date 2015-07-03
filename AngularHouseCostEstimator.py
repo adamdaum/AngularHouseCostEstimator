@@ -1,12 +1,33 @@
+import os
+import urlparse
 from flask import Flask
 from flask.ext.heroku import Heroku
 from flask.ext.restless import APIManager
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, Integer, Text, Float, Date
 
+
+
+
 app = Flask(__name__, static_url_path='')
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://adamdaum:t7w94u3qA@localhost/projects'
 heroku = Heroku(app)
+
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://adamdaum:t7w94u3qA@localhost/projects'
+
+urlparse.uses_netloc.append("postgres")
+url = urlparse.urlparse(os.environ["DATABASE_URL"])
+
+conn = psycopg2.connect(
+    database=url.path[1:],
+    urer=url.username,
+    password=url.password,
+    host=url.hostname,
+    port=url.port
+
+)
+
+
+
 db = SQLAlchemy(app)
 
 class Project(db.Model):
