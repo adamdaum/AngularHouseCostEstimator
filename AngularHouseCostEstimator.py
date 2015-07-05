@@ -42,7 +42,7 @@ class Project(db.Model):
     finish = Column(Date, unique=False)
 
 
-db.create_all()
+#db.create_all()
 
 api_manager = APIManager(app, flask_sqlalchemy_db=db)
 api_manager.create_api(Project, methods=['GET', 'POST', 'DELETE', 'PUT'])
@@ -54,7 +54,7 @@ def index():
 
 
 
-#app.debug = True
+app.debug = True
 
 if __name__ == '__main__':
     app.run()

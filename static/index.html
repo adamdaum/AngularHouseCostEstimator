@@ -57,18 +57,40 @@
             <td><button ng-click="addProject()">Add Project</button></td>
         </tr>
 
-
-
-        <tr ng-repeat="project in projects">
-            <td>{{ project.name }}</td>
-            <td>{{ project.description }}</td>
-            <td>{{ project.vendor }}</td>
-            <td>{{ project.hours }}</td>
-            <td>{{ project.cost | currency }}</td>
-            <td>{{ project.start }}</td>
-            <td>{{ project.finish }}</td>
-            <td><button ng-click="deleteProject(project)">Delete</button></td>
+        <tr ng-hide="editorEnabled" ng-repeat="project in projects">
+                <td>{{ project.name }}</td>
+                <td>{{ project.description }}</td>
+                <td>{{ project.vendor }}</td>
+                <td>{{ project.hours }}</td>
+                <td>{{ project.cost }}</td>
+                <td>{{ project.start }}</td>
+                <td>{{ project.finish }}</td>
+                <td><a href="#" ng-click="enableEditor()">Edit Project</a></td>
+                <td><button ng-click="deleteProject(project)">Delete</button></td>
         </tr>
+
+        <tr ng-show="editorEnabled" ng-repeat="project in projects">
+            <td><input type="text" ng-model="project.name"/></td>
+            <td><input type="text" ng-model="project.description"/></td>
+            <td><input type="text" ng-model="project.vendor"/></td>
+            <td><input type="number" ng-model="project.hours"/></td>
+            <td><input type="number" ng-model="project.cost"/></td>
+            <td><input type="date" ng-model="project.start"/></td>
+            <td><input type="date" ng-model="project.finish"/></td>
+            <td>
+                <div ng-show="editorEnabled">
+                    <a href="#" ng-click="save(project)">Save</a>
+                        or
+                    <a href="#" ng-click="disableEditor()">Cancel</a>
+                </div>
+            </td>
+        </tr>
+
+
+
+
+
+
 
     </table>
 

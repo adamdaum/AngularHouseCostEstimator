@@ -13,7 +13,7 @@ var myApp = angular.module('myApp',[]);
             hours: $scope.inputHours,
             cost: $scope.inputCost,
             start: $scope.inputStart,
-            finish: $scope.inputFinish,
+            finish: $scope.inputFinish
         }).success(function(data){
             $scope.projects.push(data);
 
@@ -32,6 +32,24 @@ var myApp = angular.module('myApp',[]);
             $scope.projects.splice($scope.projects.indexOf(project), 1)
         })
     };
+
+    $scope.editorEnabled = false;
+
+
+    $scope.enableEditor = function(){
+        $scope.editorEnabled = true;
+    };
+
+    $scope.disableEditor = function(){
+        $scope.editorEnabled = false;
+    };
+
+    $scope.save = function(project){
+        $http.put("/api/project/" + project.id, project);
+        $scope.disableEditor(project);
+    };
+
+
 
      $scope.getTotal = function(){
        var total = 0;
